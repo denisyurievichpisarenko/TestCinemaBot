@@ -1,5 +1,0 @@
-1;{"row":"1", "price":"500 RUB" "1":"free", 2:"free", 3:"occupied", 4:"occupied", 5:"occupied"}
-2;{"row":"2", "price":"400 RUB" "1":"free", 2:"occupied", 3:"occupied", 4:"occupied", 5:"occupied"}
-3;{"row":"3", "price":"400 RUB" "1":"free", 2:"occupied", 3:"occupied", 4:"occupied", 5:"free"}
-4;{"row":"4", "price":"400 RUB" "1":"free", 2:"free", 3:"occupied", 4:"free", 5:"free"}
-5;{"row":"5", "price":"400 RUB" "1":"occupied", 2:"occupied", 3:"free", 4:"free", 5:"free"}
