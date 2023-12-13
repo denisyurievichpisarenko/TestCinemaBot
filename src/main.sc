@@ -33,8 +33,8 @@ theme: /
         a: Выберите время сеанса.
         script:
             for (var id = 1; id < Object.keys(films).length + 1; id++) {
-                var timeslots = films[id].value.time;
-                if (_.contains(timeslots, $session.film_title)) {
+                var titles = films[id].value.title;
+                if (_.contains(titles, $session.film_title)) {
                     var button_name = films[id].value.time;
                     $reactions.buttons({text: button_name, transition: 'GetTime'})
                 }
