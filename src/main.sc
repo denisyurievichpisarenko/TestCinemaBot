@@ -2,12 +2,28 @@ require: films.csv
     name = films
     var = films
 
-a: Привет! Я бот кинотеатра «...» Чем я могу вам помочь?
-  
 theme: /BuyTicket
     
     state: Hello
+        
         a: Вы можете купить билет на сеанс или вернуть уже приобретённый. Что вы хотели бы сделать?
+        script:
+            for (var id = 1; id < Object.keys(films).length + 1; id++) {
+                var titles = films[id].value.title;
+                {
+                    var button_name = films[id].value.title;
+                    $reactions.buttons({text: button_name, transition: 'GetTitle'})
+                }
+            }
+        
+    state: GetTitle
+        script:
+            $session.pizza_name = $request.query;
+        go!: /Choose
+        
+        
+        
+        a: 
         buttons:
             "Купить" -> /BuyTicket/Buy
             "Вернуть" -> /BuyTicket/Refund
