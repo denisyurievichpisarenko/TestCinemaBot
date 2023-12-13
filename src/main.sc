@@ -36,22 +36,9 @@ theme: /BuyTicket
     state: GetTime
         script:
             $session.film_time = $request.query;
-        go!: /Choo
-        
-        
-        
-        a: 
-        buttons:
-            "Купить" -> /BuyTicket/Buy
-            "Вернуть" -> /BuyTicket/Refund
-        
-        state: Buy
-            a: Введите название фильма
-            
-        
-        state: Refund
-            a: Чтобы купить билет, перейдите по ссылке:
+        go!: /GiveLink
     
-    state: CatchAll
-        event!: noMatch
-        a: Извините, я вас не понимаю.
+    state: GiveLink
+        a: Для выбора мест и оплаты воспользуйтесь
+        inlineButtons:
+            {text:"ссылкой", url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
