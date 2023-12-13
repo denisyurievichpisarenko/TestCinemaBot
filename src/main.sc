@@ -4,9 +4,9 @@ require: films.csv
 
 theme: /BuyTicket
     
-    state: Hello
+    state: ChooseTitle
         
-        a: Вы можете купить билет на сеанс или вернуть уже приобретённый. Что вы хотели бы сделать?
+        a: Выберите фильм.
         script:
             for (var id = 1; id < Object.keys(films).length + 1; id++) {
                 var titles = films[id].value.title;
@@ -18,8 +18,25 @@ theme: /BuyTicket
         
     state: GetTitle
         script:
-            $session.pizza_name = $request.query;
-        go!: /Choose
+            $session.film_title = $request.query;
+        go!: /ChooseTime
+    
+    state: ChooseTime
+        
+        a: Выберите время сеанса.
+        script:
+            for (var id = 1; id < Object.keys(films).length + 1; id++) {
+                var timeslots = films[id].value.time;
+                if (_.contains(timeslots, $session.film_title)) {
+                    var button_name = films[id].value.time;
+                    $reactions.buttons({text: button_name, transition: 'GetTime'})
+                }
+            }
+        
+    state: GetTime
+        script:
+            $session.film_time = $request.query;
+        go!: /Choo
         
         
         
