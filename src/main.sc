@@ -1,18 +1,16 @@
-require: slotfilling/slotFilling.sc
-require: pizza.csv
-    name = pizza
-    var = pizza
+require: films.csv
+    name = films
+    var = films
 
-  module = sys.zb-common
-  
-  a: Привет! Я бот кинотеатра «...» Чем я могу вам помочь?
+a: Привет! Я бот кинотеатра «...» Чем я могу вам помочь?
   
 theme: /BuyTicket
-
-    a: Вы можете купить билет на сеанс или вернуть уже приобретённый. Что вы хотели бы сделать?
-    buttons:
-        "Купить" -> /BuyTicket/Buy
-        "Вернуть" -> /BuyTicket/Refund
+    
+    state: Hello
+        a: Вы можете купить билет на сеанс или вернуть уже приобретённый. Что вы хотели бы сделать?
+        buttons:
+            "Купить" -> /BuyTicket/Buy
+            "Вернуть" -> /BuyTicket/Refund
         
         state: Buy
             a: Введите название фильма
