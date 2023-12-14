@@ -33,8 +33,7 @@ theme: /
         a: Выберите время сеанса.
         script:
             for (var id = 1; id < Object.keys(films).length + 1; id++) {
-                var titles = films[id].value.title;
-                if (_.contains(titles, $session.film_title)) {
+                if ($session.film_title == films[id].value.title) {
                     var button_name = films[id].value.time;
                     $reactions.buttons({text: button_name, transition: 'GetTime'})
                 }
@@ -46,6 +45,6 @@ theme: /
             go!: /GiveLink
     
     state: GiveLink
-        a: Для выбора мест и оплаты воспользуйтесь
+        a: Для выбора мест и оплаты воспользуйтесь ссылкой:
         inlineButtons:
-            {text:"ссылкой", url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
+            {text:"Перейти на сайт", url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
