@@ -13,9 +13,14 @@ theme: /
             $context.response = {};
         a: Привет! Это бот кинотеатра "Аргунь". Здесь можно купить билет на сеанс, а скоро можно будет что-нибудь ещё. 
         a: Какой у вас вопрос?
-        buttons: 
-            "Купить билет" -> ./Start
-            "Что-нибудь ещё" -> /AnythingElse
+        
+        state: BuyTicket
+            q!: * (покуп*|куп*|приобр*|найт*|нужен|нужн* билет*) *
+            go!: ../Start
+        
+        state: RefundTicket
+            q!: * (верн*|возврат* [ден*] [за] билет*) *
+            go!: ../AnythingElse
     
         state: Start
             a: Здесь вы можете приобрести билет на сеанс
@@ -77,7 +82,7 @@ theme: /
             
                         state: GetTime
                             script:
-                                $session.film_title = $request.query;
+                                $session.film_time = $request.query;
                             go!: ../GiveLink
             
                         state: GiveLink
@@ -86,7 +91,11 @@ theme: /
                                 {text:"Перейти на сайт", url:"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
                                 "Вернуться" -> /Initialize
     
-    state: AnythingElse
-        a: Ой. Я пока умею только продавать билеты :(
-        buttons:
-            "Вернуться в меню?" -> ../Initialize
+        state: AnythingElse
+            a: Ой. Я пока умею только продавать билеты :(
+            buttons:
+                "Вернуться в меню" -> /Initialize
+    
+    state: CatchAll
+        event!: noMatch
+        a: К сожалению, я вас не понимаю. Переформулируйте, пожалуйста, запрос.
